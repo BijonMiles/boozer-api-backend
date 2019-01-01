@@ -26,9 +26,16 @@ module Api
         render json: cocktail_json
       end
 
-      # def create
-      #   byebug
+      # def new
+      #   @cocktail = Cocktail.new
       # end
+
+      def create
+        # byebug
+        @cocktail = Cocktail.create(strong_params)
+        # byebug
+        render json: @cocktail
+      end
 
       def edit
 
@@ -40,6 +47,13 @@ module Api
 
       def destroy
 
+      end
+
+      private
+
+      def strong_params
+        # byebug
+        params.require(:cocktail).permit(:name, :description, :instructions)
       end
     end
   end
